@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block metadescription %}
+   We Have Varieties of Your Dream Car
+{% endblock %}
+{% block title %}
+    Search
+{% endblock %}
+{% block content %}
+<div>
+  <p class="text-center my_search_text"> You have searched for:<b>"{{query}}"</b></p>
+</div>
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products%}
+            <div class="card" style="width: 23rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+<!--                    <p class="card-text">{{product.desc}}</p>-->
+                    <p class="card-text">Price:-{{product.price}}</p>
+                </div>
+            </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text"><b>0 Results Found</b></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
